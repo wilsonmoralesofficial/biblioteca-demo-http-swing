@@ -6,7 +6,6 @@ import segurosgyt.wsoc.interfaces.IBookDB;
 import segurosgyt.wsoc.models.Book;
 
 import java.util.List;
-import java.util.Map;
 
 public class BookListBusinessDataImpl implements BookListBusinessData {
 

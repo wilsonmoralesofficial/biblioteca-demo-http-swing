@@ -3,11 +3,9 @@ package segurosgyt.wsoc.bookListBusinessData;
 import segurosgyt.wsoc.CopyBookDB;
 import segurosgyt.wsoc.interfacesBookListBusinessData.CopyBookListBusinessData;
 import segurosgyt.wsoc.interfaces.ICopyBookDB;
-import segurosgyt.wsoc.models.Book;
 import segurosgyt.wsoc.models.CopyBook;
 
 import java.util.List;
-import java.util.Map;
 
 public class CopyBookListBusinessDataImpl implements CopyBookListBusinessData {
 

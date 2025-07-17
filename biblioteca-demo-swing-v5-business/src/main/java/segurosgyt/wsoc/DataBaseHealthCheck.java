@@ -1,13 +1,13 @@
 package segurosgyt.wsoc;
 
+import segurosgyt.wsoc.healthChecksProcessors.TestConnectionHealthCheck;
 import segurosgyt.wsoc.interfacesHealthCheck.HealthCheckComponent;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class DataBaseHealthCheck implements HealthCheckComponent {
 
-    private String details;
+
+    TestConnectionHealthCheck testConnectionHealthCheck = new TestConnectionHealthCheck();
 
     @Override
     public HealthStatus check() {
@@ -18,13 +18,23 @@ public class DataBaseHealthCheck implements HealthCheckComponent {
                 return new HealthStatus("Database", false, "Offline");
             }
         } catch (RuntimeException e) {
-            Map<String, Object> details = new HashMap<>();
-            details.put("error", e.getMessage());
-            return new HealthStatus("database", false, "Error al conectar a DB");
+            return new HealthStatus("database", false, "Error al conectar a DB => " + e);
         }
     }
 
     private boolean getTestConnection(){
-        return true;
+        try{
+            if (testConnectionHealthCheck.connectionAvailable())
+            {
+                return true;
+            }else
+            {
+                return false;
+            }
+        }
+        catch (RuntimeException exception)
+        {
+            throw new RuntimeException(exception);
+        }
     }
 }
