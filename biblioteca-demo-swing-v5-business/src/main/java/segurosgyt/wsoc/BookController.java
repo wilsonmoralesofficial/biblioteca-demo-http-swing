@@ -8,6 +8,7 @@ import segurosgyt.wsoc.interfacesBookListBusinessData.CopyBookListBusinessData;
 import segurosgyt.wsoc.models.Book;
 import segurosgyt.wsoc.models.CopyBook;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public class BookController {
@@ -20,7 +21,7 @@ public class BookController {
 
         // Definición de Endpoints
 
-        app.exception(Exception.class ,(e,ctx)->{
+        app.exception(Exception.class, (e, ctx) -> {
             ctx.json(e.getMessage());
             ctx.status(500);
         });

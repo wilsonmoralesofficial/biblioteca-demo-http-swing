@@ -58,7 +58,7 @@ public class BookDB implements IBookDB {
                 stmt2.executeUpdate(queryForm2);
                 connectionListBook.commit();
                 return true;
-            }catch (Exception e){
+            }catch (SQLException e){
                 connectionListBook.rollback();
                 throw e;
             }
@@ -112,9 +112,9 @@ public class BookDB implements IBookDB {
             historyDB.saveDataHistory(lastInsert,content,connection);
 
             connection.commit();
-        }catch (Exception e){
+        }catch (Throwable e){
             connection.rollback();
-            throw new RuntimeException("Error in saveDataBook() ==> " + e);
+            throw new DataAccessException("Error in saveDataBook() ==> " + e, e);
         }
 
         return pstmt;
